@@ -12,4 +12,5 @@ CREATE TABLE employee (
 );
 
 
-insert into employee (firstname,lastname,email) values ('Emmanouil','Gkatziouras','gkatzioura@gmail.com');
+INSERT INTO employee (firstname, lastname, email)
+VALUES ('Itadori', 'Yuji', 'yuji@mailnesia.com');
