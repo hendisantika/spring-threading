@@ -22,7 +22,7 @@ public class Scheduler {
     private AsynchronousService checkAsyncService;
 
     @Scheduled(fixedDelay = 10000)
-    public void checkTheScedule() {
+    public void checkTheSchedule() {
         checkAsyncService.printEmployees();
     }
 

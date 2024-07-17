@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,6 +22,9 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "employee", schema = "SPRING_DATA_JPA_EXAMPLE")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
     @Id
@@ -34,37 +40,4 @@ public class Employee {
 
     @Column(name = "email")
     private String email;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 }

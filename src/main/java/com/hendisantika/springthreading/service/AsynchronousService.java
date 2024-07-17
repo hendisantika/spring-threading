@@ -3,6 +3,7 @@ package com.hendisantika.springthreading.service;
 import com.hendisantika.springthreading.model.Employee;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.task.TaskExecutor;
@@ -24,13 +25,12 @@ import java.util.concurrent.CompletableFuture;
  * To change this template use File | Settings | File Templates.
  */
 @Service
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class AsynchronousService {
 
-    @Autowired
-    private TaskExecutor taskExecutor;
+    private final TaskExecutor taskExecutor;
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -38,21 +38,19 @@ public class AsynchronousService {
     @Async
     @Transactional
     public void printEmployees() {
-
         List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e").getResultList();
         employees.stream().forEach(e -> System.out.println(e.getEmail()));
     }
 
     @Async("specificTaskExecutor")
     @Transactional
-    public CompletableFuture<List<Employee>> fetchEmployess() {
+    public CompletableFuture<List<Employee>> fetchEmployees() {
         List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e").getResultList();
         return CompletableFuture.completedFuture(employees);
     }
 
 
     public void executeAsynchronously() {
-
         MyThread myThread = applicationContext.getBean(MyThread.class);
         taskExecutor.execute(myThread);
     }

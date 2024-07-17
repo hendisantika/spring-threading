@@ -23,7 +23,6 @@ public class MyThread implements Runnable {
 
     @Override
     public void run() {
-
         LOGGER.info("Called from thread");
     }
 }
